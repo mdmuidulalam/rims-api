@@ -1,0 +1,6 @@
+
+api/bin/
+
+api/node_modules/
+
+*.log
