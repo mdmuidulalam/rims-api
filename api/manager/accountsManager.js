@@ -10,19 +10,27 @@ class accountsManager extends baseManager {
     }
     
     /* signup api manager */
-    signup(signUpViewModel, response, callback) {
+    signup(signUpViewModel, response) {
         let uData = this.uData;
 
         return uData.getUserByEmail(signUpViewModel.Email).then(function(dbUser) {
             if(dbUser.length == 0)
             {
-                var user = {
-                    name : signUpViewModel.Name,
-                    email : signUpViewModel.Email,
-                    passwordHash: bcrypt.hashSync(signUpViewModel.Password, config.password.salt),
-                    userId: signUpViewModel.Email.replace("@", ".").toLowerCase()
-                };
-                return user;
+                return new Promise(function(resolve,reject) {
+                    bcrypt.hash(signUpViewModel.Password, config.password.salt, function(err,hash) {
+                        if (err) {
+                            reject(err);
+                        }
+                        else {
+                            resolve({
+                                name : signUpViewModel.Name,
+                                email : signUpViewModel.Email,
+                                passwordHash: hash,
+                                userId: signUpViewModel.Email.replace("@", ".").toLowerCase()
+                            });
+                        }
+                    });
+                });
             }
             else 
             {
