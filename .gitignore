@@ -2,3 +2,5 @@
 api/node_modules/
 
 *.log
+
+api/package-lock\.json
