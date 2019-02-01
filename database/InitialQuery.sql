@@ -126,10 +126,26 @@ CREATE TABLE IF NOT EXISTS VendorsProducts
 CREATE TABLE IF NOT EXISTS PurchasesProducts
 (
     Id int NOT NULL AUTO_INCREMENT,
-    PurchasesId int NOT NULL,
-    CONSTRAINT FK_PurchasesProducts_PurchasesId FOREIGN KEY (PurchasesId) REFERENCES Purchases(Id),
+    PurchaseId int NOT NULL,
+    CONSTRAINT FK_PurchasesProducts_PurchasesId FOREIGN KEY (PurchaseId) REFERENCES Purchases(Id),
     ProductId int NOT NULL,
     CONSTRAINT FK_PurchasesProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
+    PRIMARY KEY (ID)
+);
+
+-- F-05: Enable Dynamic Schema Database
+
+-- Create DataSchemas Table
+CREATE TABLE IF NOT EXISTS DataSchemas
+(
+    Id int NOT NULL AUTO_INCREMENT,
+    TableId int NOT NULL,
+    DataName varchar(32) NOT NULL,
+    DataCode varchar(32) NOT NULL,
+    DataType int NOT NULL,
+    DataFieldType int NOT NULL,
+    Required bit NOT NULL,
+    ValueScript varchar(32) NOT NULL,
     PRIMARY KEY (ID)
 );
 
