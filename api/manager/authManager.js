@@ -12,14 +12,12 @@ class authManager extends baseManager {
 
     /* login api manager */
     login(logInViewModel, response) {
-        let uData = this.uData;
-        
-        return uData.getUserByEmail(logInViewModel.Email.trim()).then(function(dbUser) {
-            return new Promise(function(resolve,reject) {
+        return this.uData.getUserByEmail(logInViewModel.Email.trim()).then((dbUser) => {
+            return new Promise((resolve,reject) => {
                 if(dbUser.length == 0) {
                     reject('Wrong email or password');
                 } else {
-                    bcrypt.compare(logInViewModel.Password, dbUser[0].PasswordHash, function(err, res) {
+                    bcrypt.compare(logInViewModel.Password, dbUser[0].PasswordHash, (err, res) => {
                         if(err || !res) {
                             reject('Wrong email or password');
                         }
@@ -28,13 +26,12 @@ class authManager extends baseManager {
                             response.success = true;
                             response.entity = {};
                             response.entity.token = auth.createJWToken(dbUser);
-                            console.log(response.entity.token);
                             resolve();
                         } 
                     });
                 }
             });
-        }).catch(function(error) {
+        }).catch((error) => {
             response.success = false;
             response.errorDescriptions.push(error);
         });

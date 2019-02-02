@@ -29,7 +29,7 @@ router.post('/login', function(req, res) {
 
         let am = new authManager(dbConnection);
         
-        am.login(logInViewModel, response).finally(function() {
+        am.login(logInViewModel, response).finally(() => {
             res.send(response);
             dbConnection.close();
         });

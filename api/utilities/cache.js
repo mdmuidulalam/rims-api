@@ -7,7 +7,7 @@ class cache {
   
     set(key, obj) {
         return new Promise((resolve,reject) => {
-            this.cache.set( key, obj, function( err, success ) {
+            this.cache.set( key, obj, ( err, success ) => {
                 if(err) {
                     reject(err);
                 } if( success ) {
@@ -19,7 +19,7 @@ class cache {
 
     get(key) {
         return new Promise((resolve,reject) => {
-            this.cache.get( key, function( err, value ) {
+            this.cache.get( key, ( err, value ) => {
                 if( err || value == undefined) {
                     if(err) {
                         reject(err);
@@ -35,7 +35,7 @@ class cache {
   
     delete(key) {
         return new Promise((resolve,reject) => {
-            this.cache.del( key, function( err, count ) {
+            this.cache.del( key, ( err, count ) => {
                 if( err ) {
                     reject(err);
                 } else {

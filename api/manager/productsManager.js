@@ -6,7 +6,7 @@ class productsManager extends baseManager {
     }
 
     createProduct(product, response){
-        this.getDataSchemas().then(function(dataSchemas) {
+        this.getDataSchemas().then((dataSchemas) => {
             console.log(dataSchemas[0]);
         });
     }

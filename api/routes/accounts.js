@@ -33,7 +33,7 @@ router.post('/signup', function(req, res) {
       
   let am = new accountsManager(dbConnection);
 
-  am.signup(signUpViewModel, response).finally(function() {
+  am.signup(signUpViewModel, response).finally(() => {
     res.send(response);
     dbConnection.close();
   });
