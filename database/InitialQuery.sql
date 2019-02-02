@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS DataSchemas
     DataType int NOT NULL,
     DataFieldType int NOT NULL,
     Required bit NOT NULL,
-    ValueScript varchar(32) NOT NULL,
+    ValueScript varchar(256),
     PRIMARY KEY (ID)
 );
 

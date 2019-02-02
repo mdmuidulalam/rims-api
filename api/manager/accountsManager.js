@@ -14,14 +14,12 @@ class accountsManager extends baseManager {
         let uData = this.uData;
 
         return uData.getUserByEmail(signUpViewModel.Email).then(function(dbUser) {
-            if(dbUser.length == 0)
-            {
+            if(dbUser.length == 0) {
                 return new Promise(function(resolve,reject) {
                     bcrypt.hash(signUpViewModel.Password, config.password.salt, function(err,hash) {
                         if (err) {
                             reject(err);
-                        }
-                        else {
+                        } else {
                             resolve({
                                 name : signUpViewModel.Name,
                                 email : signUpViewModel.Email,
@@ -31,9 +29,7 @@ class accountsManager extends baseManager {
                         }
                     });
                 });
-            }
-            else 
-            {
+            } else  {
                 throw 'DuplicateEmail';
             }
         }).then(function(user) {

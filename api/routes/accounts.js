@@ -7,7 +7,14 @@ var base = require('./base');
 var accountsManager = require('../manager/accountsManager')
 
 /* signup api */
-/* For register new user */
+/* registering new user */
+/* 
+{ 
+  "Name": "Sample Name",
+  "Email": "mail@mail.com",
+  "Password": "@password",
+}
+*/
 router.post('/signup', function(req, res) {
   let response = new responseViewModel();
   let signUpViewModel = req.body;

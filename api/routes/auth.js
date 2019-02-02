@@ -7,6 +7,12 @@ var authManager = require('../manager/authManager')
 
 /* login api */
 /* For user authentication when they try to log in */
+/* 
+{ 
+  "Email": "mail@mail.com",
+  "Password": "@password",
+}
+*/
 router.post('/login', function(req, res) {
     let response = new responseViewModel();
     let logInViewModel = req.body;
