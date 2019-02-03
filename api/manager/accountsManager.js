@@ -1,3 +1,5 @@
+const Promise = require("bluebird");
+
 const baseManager = require('./baseManager');
 const usersData = require('../dal/usersData');
 const bcrypt = require('bcrypt');

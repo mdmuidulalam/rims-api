@@ -18,8 +18,11 @@ router.post('/create', function(req, res) {
     let product = req.body;
 
     let pm = new productsManager(baseObj.dbConnection, baseObj.site, baseObj.cacheService);
-    
-    pm.createProduct(product, response);
+
+    pm.createProduct(product, response).finally( () => {
+        res.send(response);
+        baseObj.dbConnection.close();
+    });
 });
 
 module.exports = router;
