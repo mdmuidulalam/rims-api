@@ -22,6 +22,35 @@ class productsManager extends baseManager {
             response.errorDescriptions.push(error);
         });
     }
+
+    editProduct(product, response) {
+        return this.getDataSchemas().then((dataSchemas) => {
+            let productsColumns = dataSchemas.filter(ds => ds.TableId == skeletonTables.Products);
+            let pData = new productsData(this.dbConnection, productsColumns);
+
+            return pData.updateProduct(product);
+        }).then(() => {
+            response.success = true;
+        }).catch((error) => {
+            response.success = false;
+            response.errorDescriptions.push(error);
+        });
+    }
+
+    getProducts(query, response) {
+        return this.getDataSchemas().then((dataSchemas) => {
+            let productsColumns = dataSchemas.filter(ds => ds.TableId == skeletonTables.Products);
+            let pData = new productsData(this.dbConnection, productsColumns);
+            
+            return pData.getProducts(query);
+        }).then((products) => {
+            response.success = true;
+            response.entity = products;
+        }).catch((error) => {
+            response.success = false;
+            response.errorDescriptions.push(error);
+        });
+    }
 }   
 
 module.exports = productsManager;
