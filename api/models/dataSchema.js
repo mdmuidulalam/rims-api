@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-class user {
+class dataSchemas {
     constructor(dbConnection) {
         this.DataSchemas = dbConnection.define('DataSchemas', {
             Id: { type: Sequelize.INTEGER },
@@ -17,5 +17,4 @@ class user {
     }
 }
 
-
-module.exports = user;
+module.exports = dataSchemas;
