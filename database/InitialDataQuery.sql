@@ -16,7 +16,7 @@ SELECT * FROM (SELECT 2 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 2 AND `DataCode` = "CustomerId"
 ) LIMIT 1;
@@ -36,7 +36,7 @@ SELECT * FROM (SELECT 6 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 6 AND `DataCode` = "OrderId"
 ) LIMIT 1;
@@ -56,7 +56,7 @@ SELECT * FROM (SELECT 6 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 6 AND `DataCode` = "ProductId"
 ) LIMIT 1;
@@ -76,7 +76,7 @@ SELECT * FROM (SELECT 4 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 4 AND `DataCode` = "VendorId"
 ) LIMIT 1;
@@ -96,7 +96,7 @@ SELECT * FROM (SELECT 8 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 8 AND `DataCode` = "PurchaseId"
 ) LIMIT 1;
@@ -116,7 +116,7 @@ SELECT * FROM (SELECT 8 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 8 AND `DataCode` = "ProductId"
 ) LIMIT 1;
@@ -136,7 +136,7 @@ SELECT * FROM (SELECT 7 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 7 AND `DataCode` = "VendorId"
 ) LIMIT 1;
@@ -156,7 +156,7 @@ SELECT * FROM (SELECT 7 as a,
 1 as d,
 1 as e,
 true as f,
-"" as g) AS tmp
+null as g) AS tmp
 WHERE NOT EXISTS (
     SELECT * FROM DataSchemas WHERE `TableId` = 7 AND `DataCode` = "ProductId"
 ) LIMIT 1;

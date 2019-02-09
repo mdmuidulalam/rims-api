@@ -4,11 +4,9 @@ var jwtConfig = require('../utilities/auth');
 class jwtMW {
     constructor(){ }
 
-    verifyJWT_MW(req, res, next)
-    {
+    verifyJWT_MW(req, res, next) {
         let token = req.headers['authorization'];
-        if(token === undefined || token === '')
-        {
+        if(token === undefined || token === '') {
             res.status(400).json({message: "Authentication failed!"});
             return;
         }

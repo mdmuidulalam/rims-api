@@ -1,3 +1,5 @@
+const Promise = require("bluebird");
+
 const baseManager = require('./baseManager');
 const usersData = require('../dal/usersData');
 const bcrypt = require('bcrypt');
@@ -11,17 +13,13 @@ class accountsManager extends baseManager {
     
     /* signup api manager */
     signup(signUpViewModel, response) {
-        let uData = this.uData;
-
-        return uData.getUserByEmail(signUpViewModel.Email).then(function(dbUser) {
-            if(dbUser.length == 0)
-            {
-                return new Promise(function(resolve,reject) {
-                    bcrypt.hash(signUpViewModel.Password, config.password.salt, function(err,hash) {
+        return this.uData.getUserByEmail(signUpViewModel.Email).then((dbUser) => {
+            if(dbUser.length == 0) {
+                return new Promise((resolve, reject) => {
+                    bcrypt.hash(signUpViewModel.Password, config.password.salt, (err,hash) => {
                         if (err) {
                             reject(err);
-                        }
-                        else {
+                        } else {
                             resolve({
                                 name : signUpViewModel.Name,
                                 email : signUpViewModel.Email,
@@ -31,16 +29,14 @@ class accountsManager extends baseManager {
                         }
                     });
                 });
-            }
-            else 
-            {
+            } else  {
                 throw 'DuplicateEmail';
             }
-        }).then(function(user) {
-            return uData.insertUser(user).then(function(){
+        }).then((user) => {
+            return this.uData.insertUser(user).then(() => {
                 response.success = true;
             });
-        }).catch(function(error) {
+        }).catch((error) => {
             response.success = false;
             response.errorDescriptions.push(error);
         });

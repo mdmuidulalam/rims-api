@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS Users
 CREATE TABLE IF NOT EXISTS Customers
 (
     Id int NOT NULL AUTO_INCREMENT,
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -26,6 +28,8 @@ CREATE TABLE IF NOT EXISTS Customers
 CREATE TABLE IF NOT EXISTS Orders
 (
     Id int NOT NULL AUTO_INCREMENT,
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -33,6 +37,8 @@ CREATE TABLE IF NOT EXISTS Orders
 CREATE TABLE IF NOT EXISTS Products
 (
     Id int NOT NULL AUTO_INCREMENT,
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -40,6 +46,8 @@ CREATE TABLE IF NOT EXISTS Products
 CREATE TABLE IF NOT EXISTS Purchases
 (
     Id int NOT NULL AUTO_INCREMENT,
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -47,6 +55,8 @@ CREATE TABLE IF NOT EXISTS Purchases
 CREATE TABLE IF NOT EXISTS Vendors
 (
     Id int NOT NULL AUTO_INCREMENT,
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -105,6 +115,8 @@ CREATE TABLE IF NOT EXISTS OrdersProducts
     CONSTRAINT FK_OrdersProducts_OrderId FOREIGN KEY (OrderId) REFERENCES Orders(Id),
     ProductId int NOT NULL,
     CONSTRAINT FK_OrdersProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -119,6 +131,8 @@ CREATE TABLE IF NOT EXISTS VendorsProducts
     CONSTRAINT FK_VendorsProducts_VendorId FOREIGN KEY (VendorId) REFERENCES Vendors(Id),
     ProductId int NOT NULL,
     CONSTRAINT FK_VendorsProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -130,6 +144,8 @@ CREATE TABLE IF NOT EXISTS PurchasesProducts
     CONSTRAINT FK_PurchasesProducts_PurchasesId FOREIGN KEY (PurchaseId) REFERENCES Purchases(Id),
     ProductId int NOT NULL,
     CONSTRAINT FK_PurchasesProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
+    createdAt datetime NOT NULL,
+    updatedAt datetime NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -145,7 +161,7 @@ CREATE TABLE IF NOT EXISTS DataSchemas
     DataType int NOT NULL,
     DataFieldType int NOT NULL,
     Required bit NOT NULL,
-    ValueScript varchar(32) NOT NULL,
+    ValueScript varchar(256),
     PRIMARY KEY (ID)
 );
 

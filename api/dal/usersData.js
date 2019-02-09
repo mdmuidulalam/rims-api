@@ -32,8 +32,6 @@ class usersdata extends baseData {
                         $eq: email
                     }
                 }
-            }).then(function(dbUser){
-                return dbUser;
             });
     }
 
