@@ -1,22 +1,22 @@
 const baseManager = require("./baseManager");
 const skeletonTables = require("../enums/skeletonTables");
 
-var productsData = require("../dal/productsData");
+var ordersData = require("../dal/ordersData");
 
-class productsManager extends baseManager {
+class ordersManager extends baseManager {
   constructor(dbConnection, site, cacheService) {
     super(dbConnection, site, cacheService);
   }
 
-  createProduct(product, response) {
+  createOrder(order, response) {
     return this.getDataSchemas()
       .then(dataSchemas => {
-        let productsColumns = dataSchemas.filter(
-          ds => ds.TableId == skeletonTables.Products
+        let ordersColumns = dataSchemas.filter(
+          ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new productsData(this.dbConnection, productsColumns);
+        let pData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.insertProduct(product);
+        return pData.insertOrder(order);
       })
       .then(() => {
         response.success = true;
@@ -27,15 +27,15 @@ class productsManager extends baseManager {
       });
   }
 
-  editProduct(product, response) {
+  editOrder(order, response) {
     return this.getDataSchemas()
       .then(dataSchemas => {
-        let productsColumns = dataSchemas.filter(
-          ds => ds.TableId == skeletonTables.Products
+        let ordersColumns = dataSchemas.filter(
+          ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new productsData(this.dbConnection, productsColumns);
+        let pData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.updateProduct(product);
+        return pData.updateOrder(order);
       })
       .then(() => {
         response.success = true;
@@ -46,19 +46,19 @@ class productsManager extends baseManager {
       });
   }
 
-  getProducts(query, response) {
+  getOrders(query, response) {
     return this.getDataSchemas()
       .then(dataSchemas => {
-        let productsColumns = dataSchemas.filter(
-          ds => ds.TableId == skeletonTables.Products
+        let ordersColumns = dataSchemas.filter(
+          ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new productsData(this.dbConnection, productsColumns);
+        let pData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.getProducts(query);
+        return pData.getOrders(query);
       })
-      .then(products => {
+      .then(orders => {
         response.success = true;
-        response.entity = products;
+        response.entity = orders;
       })
       .catch(error => {
         response.success = false;
@@ -67,4 +67,4 @@ class productsManager extends baseManager {
   }
 }
 
-module.exports = productsManager;
+module.exports = ordersManager;
