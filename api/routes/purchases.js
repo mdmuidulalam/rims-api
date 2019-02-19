@@ -3,10 +3,10 @@ var router = express.Router();
 
 var responseViewModel = require("../utilities/responseViewModel");
 var base = require("./base");
-var ordersManager = require("../manager/ordersManager");
+var purchasesManager = require("../manager/purchasesManager");
 
 /* create api */
-/* creating new order */
+/* creating new purchase */
 /* 
 { 
     ...[All the Static Fields]
@@ -15,22 +15,22 @@ var ordersManager = require("../manager/ordersManager");
 router.post("/create", function(req, res) {
   let response = new responseViewModel();
   let baseObj = new base();
-  let order = req.body;
+  let purchase = req.body;
 
-  let om = new ordersManager(
+  let pm = new purchasesManager(
     baseObj.dbConnection,
     baseObj.site,
     baseObj.cacheService
   );
 
-  om.createOrder(order, response).finally(() => {
+  pm.createPurchase(purchase, response).finally(() => {
     res.send(response);
     baseObj.dbConnection.close();
   });
 });
 
 /* edit api */
-/* editing order */
+/* editing purchase */
 /* 
 {
     "Id" : "12", 
@@ -40,22 +40,22 @@ router.post("/create", function(req, res) {
 router.put("/edit", function(req, res) {
   let response = new responseViewModel();
   let baseObj = new base();
-  let order = req.body;
+  let purchase = req.body;
 
-  let om = new ordersManager(
+  let pm = new purchasesManager(
     baseObj.dbConnection,
     baseObj.site,
     baseObj.cacheService
   );
 
-  om.editOrder(order, response).finally(() => {
+  pm.editPurchase(purchase, response).finally(() => {
     res.send(response);
     baseObj.dbConnection.close();
   });
 });
 
 /* get api */
-/* get order(s) */
+/* get purchase(s) */
 /* 
 {
     ...[Necessary Filter Fields], [$[FieldName] for Filter Fields Operator]
@@ -66,13 +66,13 @@ router.get("/get", function(req, res) {
   let baseObj = new base();
   let query = req.query;
 
-  let om = new ordersManager(
+  let pm = new purchasesManager(
     baseObj.dbConnection,
     baseObj.site,
     baseObj.cacheService
   );
 
-  om.getOrders(query, response).finally(() => {
+  pm.getPurchases(query, response).finally(() => {
     res.send(response);
     baseObj.dbConnection.close();
   });

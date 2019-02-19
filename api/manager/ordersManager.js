@@ -14,9 +14,9 @@ class ordersManager extends baseManager {
         let ordersColumns = dataSchemas.filter(
           ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new ordersData(this.dbConnection, ordersColumns);
+        let oData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.insertOrder(order);
+        return oData.insertOrder(order);
       })
       .then(() => {
         response.success = true;
@@ -33,9 +33,9 @@ class ordersManager extends baseManager {
         let ordersColumns = dataSchemas.filter(
           ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new ordersData(this.dbConnection, ordersColumns);
+        let oData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.updateOrder(order);
+        return oData.updateOrder(order);
       })
       .then(() => {
         response.success = true;
@@ -52,9 +52,9 @@ class ordersManager extends baseManager {
         let ordersColumns = dataSchemas.filter(
           ds => ds.TableId == skeletonTables.Orders
         );
-        let pData = new ordersData(this.dbConnection, ordersColumns);
+        let oData = new ordersData(this.dbConnection, ordersColumns);
 
-        return pData.getOrders(query);
+        return oData.getOrders(query);
       })
       .then(orders => {
         response.success = true;
