@@ -165,3 +165,15 @@ CREATE TABLE IF NOT EXISTS DataSchemas
     PRIMARY KEY (ID)
 );
 
+-- F-23: Add products grid system
+
+-- Create DataGridColumns Table
+CREATE TABLE IF NOT EXISTS DataGridColumns
+(
+    Id int NOT NULL AUTO_INCREMENT,
+    GridType int NOT NULL,
+    Header varchar(256) NOT NULL,
+    Accessor varchar(256),
+    SortOrder int,
+    PRIMARY KEY (ID)
+);
