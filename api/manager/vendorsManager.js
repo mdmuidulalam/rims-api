@@ -50,7 +50,7 @@ class vendorsManager extends baseManager {
     return this.getDataSchemas()
       .then(dataSchemas => {
         let vendorsColumns = dataSchemas.filter(
-          ds => ds.TableId == skeletonTables.Vendor
+          ds => ds.TableId == skeletonTables.Vendors
         );
         let vData = new vendorsData(this.dbConnection, vendorsColumns);
 
