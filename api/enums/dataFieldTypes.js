@@ -1,6 +1,7 @@
 var dataFieldTypes = {
-    Static: 1,
-    Dynamic: 2
+  Fixed: 1,
+  Static: 2,
+  Dynamic: 3
 };
 
 module.exports = dataFieldTypes;
