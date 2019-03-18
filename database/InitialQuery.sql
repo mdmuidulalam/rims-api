@@ -172,8 +172,32 @@ CREATE TABLE IF NOT EXISTS DataGridColumns
 (
     Id int NOT NULL AUTO_INCREMENT,
     GridType int NOT NULL,
-    Header varchar(256) NOT NULL,
-    Accessor varchar(256),
+    Header varchar(64) NOT NULL,
+    Accessor varchar(32),
     SortOrder int,
-    PRIMARY KEY (ID)
+    PRIMARY KEY (Id)
+);
+
+-- F-18: Determine product edit page and implement it
+
+-- Create EntityAreas Table
+CREATE TABLE IF NOT EXISTS EntityAreas
+(
+    Id int NOT NULL AUTO_INCREMENT,
+    EntityTypes int NOT NULL,
+    AreaName varchar(64) NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+-- Create EntityFields Table
+CREATE TABLE IF NOT EXISTS EntityFields
+(
+    Id int NOT NULL AUTO_INCREMENT,
+    EntityAreaId int NOT NULL,
+    CONSTRAINT FK_EntityFields_EntityAreaId FOREIGN KEY (EntityAreaId) REFERENCES EntityAreas(Id),
+    AreaName varchar(64) NOT NULL,
+    EntityFieldType int NOT NULL,
+    Accessor varchar(32) NOT NULL,
+    SortOrder int NOT NULL,
+    PRIMARY KEY (Id)
 );

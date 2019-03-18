@@ -24,7 +24,8 @@ class customersManager extends baseManager {
       })
       .catch(error => {
         response.success = false;
-        response.errorDescriptions.push(error);
+        response.errorDescriptions.push("Internal Server Error");
+        throw error;
       });
   }
 
@@ -43,7 +44,8 @@ class customersManager extends baseManager {
       })
       .catch(error => {
         response.success = false;
-        response.errorDescriptions.push(error);
+        response.errorDescriptions.push("Internal Server Error");
+        throw error;
       });
   }
 
@@ -63,7 +65,8 @@ class customersManager extends baseManager {
       })
       .catch(error => {
         response.success = false;
-        response.errorDescriptions.push(error);
+        response.errorDescriptions.push("Internal Server Error");
+        throw error;
       });
   }
 }
