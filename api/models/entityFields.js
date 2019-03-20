@@ -7,7 +7,7 @@ class entityFields {
       {
         Id: { type: Sequelize.INTEGER },
         EntityAreaId: { type: Sequelize.INTEGER },
-        AreaName: { type: Sequelize.STRING },
+        FieldName: { type: Sequelize.STRING },
         EntityFieldType: { type: Sequelize.INTEGER },
         Accessor: { type: Sequelize.STRING },
         SortOrder: { type: Sequelize.INTEGER }
