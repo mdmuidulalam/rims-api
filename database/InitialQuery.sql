@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS EntityFields
     Id int NOT NULL AUTO_INCREMENT,
     EntityAreaId int NOT NULL,
     CONSTRAINT FK_EntityFields_EntityAreaId FOREIGN KEY (EntityAreaId) REFERENCES EntityAreas(Id),
-    AreaName varchar(64) NOT NULL,
+    FieldName varchar(64) NOT NULL,
     EntityFieldType int NOT NULL,
     Accessor varchar(32) NOT NULL,
     SortOrder int NOT NULL,
