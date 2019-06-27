@@ -11,7 +11,7 @@ This project is combination **tow projects client side and rest api**. Client si
 1. [rims-api](https://github.com/mdmuidulalam/rims-api) for rest api
 2. [rims-clientside](https://github.com/mdmuidulalam/rims-clientside) for client side
 
-**Lets set up rest api here**
+**Let's set up rest api here**
 
 #### Step I: Clone the rims-api repository
 1. Clone repo on local machine
@@ -21,22 +21,26 @@ This project is combination **tow projects client side and rest api**. Client si
 1. [NodeJs](https://nodejs.org/en/)
 2. [NPM](https://www.npmjs.com/get-npm)
 
-
+#### Step III: Install Mysql (Database Set up)
+1. (Optional) A gui for mysql will be good. [Mysql Workbench](https://www.mysql.com/products/workbench/)
 
 # Build and Test
 To see the output we need to run both project as client side represent UI and api side serves the requests.
 
-**Lets run rest api here**
-1. Go to api folder of repo.
-2. Open terminal and run ```npm install``` command.
-3. Then run ```npm start``` command.
+**Let's set up database first**
+1. Go to ```database folder``` of repo.
+2. Restore database backup. There is sql backup file named ```RimsDatabaseBackup.sql```.
+3. The ```run the InitialQuery.sql``` file on the restored database.
+
+**Let's config database in rest api**
+1. Go to ```api``` of repo.
+2. In ```config.js file``` give ``` host, port, database name, user, password``` of mysql.
+
+**Let's run rest api here**
+1. Open terminal and run ```npm install``` command.
+2. Then run ```npm start``` command.
 
 Api should be up and running.
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Coming soon...
