@@ -1,66 +1,5 @@
--- F-01: Deploy Api and Database
-
--- Create Users Table
-CREATE TABLE IF NOT EXISTS Users
-(
-    Id int NOT NULL AUTO_INCREMENT, 
-    Name varchar(255) NOT NULL, 
-    Email varchar(255) NOT NULL, 
-    PasswordHash varchar(256) NOT NULL,
-    UserId varchar(256) NOT NULL,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- F-03: Make Database Design and Build Clear Entity Connection
-
--- Create Customers Table
-CREATE TABLE IF NOT EXISTS Customers
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Create Orders Table
-CREATE TABLE IF NOT EXISTS Orders
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Create Products Table
-CREATE TABLE IF NOT EXISTS Products
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Create Purchases Table
-CREATE TABLE IF NOT EXISTS Purchases
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Create Vendors Table
-CREATE TABLE IF NOT EXISTS Vendors
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
 -- Add Procdedure AddFieldIfNotExists
+SET GLOBAL log_bin_trust_function_creators = 1;
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS AddFieldIfNotExists 
@@ -104,100 +43,22 @@ BEGIN
 END;
 $$
 
--- Add CustomerId in Orders Table
-CALL AddFieldIfNotExists ('Orders', 'CustomerId', 'int NOT NULL, ADD CONSTRAINT FK_Orders_CustomerId FOREIGN KEY (CustomerId) REFERENCES Customers(Id)');
-
--- Create OrdersProducts Table
-CREATE TABLE IF NOT EXISTS OrdersProducts
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    OrderId int NOT NULL,
-    CONSTRAINT FK_OrdersProducts_OrderId FOREIGN KEY (OrderId) REFERENCES Orders(Id),
-    ProductId int NOT NULL,
-    CONSTRAINT FK_OrdersProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Add VendorId in Purchases Table
-CALL AddFieldIfNotExists ('Purchases', 'VendorId', 'int NOT NULL, ADD CONSTRAINT FK_Purchases_VendorId FOREIGN KEY (VendorId) REFERENCES Vendors(Id)');
-
--- Create VendorsProducts Table
-CREATE TABLE IF NOT EXISTS VendorsProducts
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    VendorId int NOT NULL,
-    CONSTRAINT FK_VendorsProducts_VendorId FOREIGN KEY (VendorId) REFERENCES Vendors(Id),
-    ProductId int NOT NULL,
-    CONSTRAINT FK_VendorsProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- Create PurchasesProducts Table
-CREATE TABLE IF NOT EXISTS PurchasesProducts
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    PurchaseId int NOT NULL,
-    CONSTRAINT FK_PurchasesProducts_PurchasesId FOREIGN KEY (PurchaseId) REFERENCES Purchases(Id),
-    ProductId int NOT NULL,
-    CONSTRAINT FK_PurchasesProducts_ProductId FOREIGN KEY (ProductId) REFERENCES Products(Id),
-    createdAt datetime NOT NULL,
-    updatedAt datetime NOT NULL,
-    PRIMARY KEY (ID)
-);
-
--- F-05: Enable Dynamic Schema Database
-
--- Create DataSchemas Table
-CREATE TABLE IF NOT EXISTS DataSchemas
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    TableId int NOT NULL,
-    DataName varchar(32) NOT NULL,
-    DataCode varchar(32) NOT NULL,
-    DataType int NOT NULL,
-    DataFieldType int NOT NULL,
-    Required bit NOT NULL,
-    ValueScript varchar(256),
-    PRIMARY KEY (ID)
-);
-
--- F-23: Add products grid system
-
--- Create DataGridColumns Table
-CREATE TABLE IF NOT EXISTS DataGridColumns
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    GridType int NOT NULL,
-    Header varchar(64) NOT NULL,
-    Accessor varchar(32),
-    SortOrder int,
-    PRIMARY KEY (Id)
-);
-
--- F-18: Determine product edit page and implement it
-
--- Create EntityAreas Table
-CREATE TABLE IF NOT EXISTS EntityAreas
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    EntityTypes int NOT NULL,
-    AreaName varchar(64) NOT NULL,
-    PRIMARY KEY (Id)
-);
-
--- Create EntityFields Table
-CREATE TABLE IF NOT EXISTS EntityFields
-(
-    Id int NOT NULL AUTO_INCREMENT,
-    EntityAreaId int NOT NULL,
-    CONSTRAINT FK_EntityFields_EntityAreaId FOREIGN KEY (EntityAreaId) REFERENCES EntityAreas(Id),
-    FieldName varchar(64) NOT NULL,
-    EntityFieldType int NOT NULL,
-    Accessor varchar(32) NOT NULL,
-    SortOrder int NOT NULL,
-    PRIMARY KEY (Id)
-);
+-- Insert Orders table CustomerName
+INSERT INTO DataSchemas
+(`TableId`,
+`DataName`,
+`DataCode`,
+`DataType`,
+`DataFieldType`,
+`Required`,
+`ValueScript`)
+SELECT * FROM (SELECT 4 as a,
+"Purchase No." as b,
+"PurchaseNumber" as c,
+1 as d,
+1 as e,
+true as f,
+null as g) AS tmp
+WHERE NOT EXISTS (
+    SELECT * FROM DataSchemas WHERE `TableId` = 4 AND `DataCode` = "PurchaseNumber"
+) LIMIT 1;
