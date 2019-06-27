@@ -22,7 +22,8 @@ This project is combination **tow projects client side and rest api**. Client si
 2. [NPM](https://www.npmjs.com/get-npm)
 
 #### Step III: Install Mysql (Database Set up)
-1. (Optional) A gui for mysql will be good. [Mysql Workbench](https://www.mysql.com/products/workbench/)
+1.  [Mysql](https://www.mysql.com/downloads/)
+2. (Optional) A gui for mysql will be good. [Mysql Workbench](https://www.mysql.com/products/workbench/)
 
 # Build and Test
 To see the output we need to run both project as client side represent UI and api side serves the requests.
@@ -40,7 +41,7 @@ To see the output we need to run both project as client side represent UI and ap
 1. Open terminal and run ```npm install``` command.
 2. Then run ```npm start``` command.
 
-Api should be up and running.
+Api should be up and running. For client side that is given in rims-clientside.
 
 # Contribute
 Coming soon...
