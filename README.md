@@ -2,7 +2,7 @@
 It is a small **Inventory Management Plus Accounting System** for small retail companies. It includes Product Inventory Module, Sales Module, Purchase Order Module, Customer Module and Accounting Module.
 
 ### Speciality
-This is inventory management system for small companies. So, for multiple companies the requiements will be same. But still there will be diferences like soem will new fields in different modules.
+This is inventory management system for small companies. So, for multiple companies the requiements will be same. But still there will be diferences like some data fields in different modules. May be Extra data feild wiil be need.
 1. Beside some basic fields and sections, it tried to make **all the fields and data sections dynamic** so that user can have new fields and new sections.
 2. Also, it is tried to make the **data grids editable**. User can add or delete columns on his own.
 
