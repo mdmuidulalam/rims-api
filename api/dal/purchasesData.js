@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 var baseData = require("./baseData");
 var dynamicModel = require("../models/dynamicModel");
 
@@ -25,7 +27,7 @@ class purchasesData extends baseData {
   updatePurchase(purchase) {
     let id = purchase["Id"];
     delete purchase["Id"];
-    return this.purchases.update(purchase, { where: { Id: { $eq: id } } });
+    return this.purchases.update(purchase, { where: { Id: { [Op.eq]: id } } });
   }
 
   /* End update data in purchases table */
