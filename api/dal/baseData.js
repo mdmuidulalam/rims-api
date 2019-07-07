@@ -1,3 +1,6 @@
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 class baseData {
     constructor(dbConnection) {
         this.dbConnection = dbConnection;
@@ -9,12 +12,12 @@ class baseData {
                 if(query.hasOwnProperty('$' + key)) {
                     let value = query[key];
                     query[key] = { };
-                    query[key][query['$' + key]] = value;
+                    query[key][Op[query['$' + key]]] = value;
                     delete query['$' + key];
                 } else {
                     let value = query[key];
                     query[key] = { };
-                    query[key]['$eq'] = value;
+                    query[key][Op.eq] = value;
                 }
             }   
         }

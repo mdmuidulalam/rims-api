@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 var baseData = require("./baseData");
 var dynamicModel = require("../models/dynamicModel");
 
@@ -25,7 +27,7 @@ class vendorsData extends baseData {
   updateVendor(vendor) {
     let id = vendor["Id"];
     delete vendor["Id"];
-    return this.vendors.update(vendor, { where: { Id: { $eq: id } } });
+    return this.vendors.update(vendor, { where: { Id: { [Op.eq]: id } } });
   }
 
   /* End update data in vendors table */
