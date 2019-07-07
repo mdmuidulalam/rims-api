@@ -8,8 +8,7 @@ class dynamicModel {
 
   getModel(table, columns) {
     let entityModel = {};
-
-    columns.forEach(col => {
+    columns.filter(col => !col.ValueScript).forEach(col => {
       entityModel[col.DataCode] = { type: this.getDataType(col.DataType) };
     });
     return this.dbConnection.define(table, entityModel);

@@ -1,3 +1,5 @@
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 var baseData = require('./baseData');
 var userModel = require('../models/user');
 
@@ -29,7 +31,7 @@ class usersdata extends baseData {
                 limit: 1,
                 where: {
                     Email: {
-                        $eq: email
+                        [Op.eq]: email
                     }
                 }
             });
