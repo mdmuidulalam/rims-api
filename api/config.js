@@ -1,12 +1,16 @@
 var config = {};
 
+///Environment Settings
+config.env = {};
+config.env.state = "dev";
+
 ///Database Seetings
 config.database = {};
 config.database.host = 'localhost';
 config.database.port = 3306;
 config.database.name = 'rimsbase';
 config.database.user = 'sa';
-config.database.password = '12345';
+config.database.password = 'password';
 config.database.dialect = 'mysql';
 
 ///Password Salt Code
