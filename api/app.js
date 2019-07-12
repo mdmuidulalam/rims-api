@@ -12,6 +12,7 @@ var ordersRouter = require("./routes/orders");
 var productsRouter = require("./routes/products");
 var purchasesRouter = require("./routes/purchases");
 var vendorsRouter = require("./routes/vendors");
+var config = require("./config");
 
 var app = express();
 
@@ -45,9 +46,15 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
   // render the error page
-  console.log(err);
-  res.status(err.status || 500);
-  res.render("error");
+  res.status(500);
+
+  if (config.env.state === "dev") {
+    console.log(err);
+    res.render("error");
+  } else if (config.env.state === "prod") {
+  }
+
+  res.send();
 });
 
 module.exports = app;

@@ -5,6 +5,7 @@ const usersData = require("../dal/usersData");
 const bcrypt = require("bcrypt");
 const config = require("../config");
 const jwt = require("../utilities/auth");
+var responseViewModel = require("../utilities/responseViewModel");
 
 class authManager extends baseManager {
   constructor(dbConnection) {
@@ -13,38 +14,34 @@ class authManager extends baseManager {
   }
 
   /* login api manager */
-  login(logInViewModel, response) {
+  login(logInViewModel, res) {
     return this.uData
       .getUserByEmail(logInViewModel.Email.trim())
       .then(dbUser => {
         return new Promise((resolve, reject) => {
           if (dbUser.length == 0) {
-            reject("Wrong email or password");
+            res.status(260);
+            resolve();
           } else {
             bcrypt.compare(
               logInViewModel.Password,
               dbUser[0].PasswordHash,
-              (err, res) => {
-                if (err || !res) {
-                  reject("Wrong email or password");
+              (err, bRes) => {
+                if (err || !bRes) {
+                  res.status(261);
                 }
-                if (res) {
+                if (bRes) {
+                  res.status(200);
                   let auth = new jwt();
-                  response.success = true;
-                  response.entity = {};
-                  response.entity.token = auth.createJWToken(dbUser);
-                  resolve();
+                  res.cookie('jwtToken', auth.createJWToken(dbUser), { maxAge: config.jwt.maxAge, httpOnly: true});
                 }
+                resolve();
               }
             );
           }
         });
       })
-      .catch(error => {
-        response.success = false;
-        response.errorDescriptions.push("Internal Server Error");
-        throw error;
-      });
+      .then(() => res.send());
   }
 }
 
