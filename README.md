@@ -42,6 +42,3 @@ To see the output we need to run both project as client side represent UI and ap
 2. Then run ```npm start``` command.
 
 Api should be up and running. For client side that is given in rims-clientside.
-
-# Contribute
-Coming soon...
